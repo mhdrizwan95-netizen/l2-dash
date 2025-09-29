@@ -15,3 +15,6 @@ coverage/
 # Python bridge
 .venv/
 __pycache__/
+
+# patches
+*.diff
