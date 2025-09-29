@@ -1,0 +1,23 @@
+models:
+  default: "gpt-5"
+limits:
+  max_changed_files: 50
+  max_diff_bytes: 300000
+paths:
+  include:
+    - "server/**"
+    - "strategies/**"
+    - "sessions/**"
+  exclude:
+    - "node_modules/**"
+    - "dist/**"
+guardrails:
+  require_review_from_codeowners: true
+  allow_force_push: false
+  allow_secrets_access: false
+style:
+  language: "typescript"
+  package_manager: "npm"
+context:
+  readme: true
+  run_tests: true
