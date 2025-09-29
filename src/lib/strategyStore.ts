@@ -1,15 +1,23 @@
-// src/lib/strategyStore.ts
 'use client';
 import { create } from 'zustand';
 
-export type Strategy = {
+export type StrategyReport = {
+  pnl: number;
+  trades: number;
+  winRate: number; // 0..1
+  maxDD: number;   // 0..1
+};
+
+export type StrategySlot = {
   id: string;
-  name: string;
-  symbol: string;
+  title: string;
+  strategyId: string | null;           // file-based id from /strategies/*.json
+  symbols: string[];
   running: boolean;
-  riskPct: number; // percent of equity risked per trade
-  size: number;    // units / shares
-  report: { pnl: number; trades: number; winRate: number; maxDD: number };
+  riskPct: number;
+  size: number;
+  paramOverrides: Record<string, any>; // per-slot overrides of file defaults
+  report: StrategyReport;
 };
 
 export type Settings = {
@@ -20,85 +28,81 @@ export type Settings = {
   ingestKey?: string;
 };
 
+const STORAGE_KEY = 'l2dash_store_v3';
+
+const uid = (): string =>
+  (typeof crypto !== 'undefined' && 'randomUUID' in crypto)
+    ? crypto.randomUUID()
+    : 'id-' + Math.random().toString(16).slice(2) + Date.now().toString(16);
+
+const defaultReport = (): StrategyReport => ({
+  pnl: 0,
+  trades: 0,
+  winRate: 0,
+  maxDD: 0,
+});
+
 const defaultSettings: Settings = { host: '127.0.0.1', port: 7497, clientId: 42 };
+
+const defaultSlot = (n: number, symbols: string[] = []): StrategySlot => ({
+  id: uid(),
+  title: `Strategy ${n}`,
+  strategyId: null,
+  symbols,
+  running: false,
+  riskPct: 0.5,
+  size: 100,
+  paramOverrides: {},
+  report: defaultReport(),
+});
 
 type Store = {
   settings: Settings;
   setSettings: (s: Partial<Settings>) => void;
 
-  strategies: Strategy[];
-  addStrategy: () => void;
-  removeStrategy: (id: string) => void;
-  updateStrategy: (id: string, patch: Partial<Strategy>) => void;
+  slots: StrategySlot[];
+  addSlot: () => void;
+  removeSlot: (id: string) => void;
+  updateSlot: (id: string, patch: Partial<StrategySlot>) => void;
+  setSlotParam: (id: string, key: string, value: any) => void;
 
   bootFromStorage: () => void;
 };
 
 export const useStrategyStore = create<Store>((set, get) => ({
   settings: defaultSettings,
+  slots: [defaultSlot(1, ['AAPL']), defaultSlot(2, ['MSFT'])],
 
-  setSettings: (s) =>
-    set({ settings: { ...get().settings, ...s } }, false, 'setSettings'),
+  setSettings: (s) => set({ settings: { ...get().settings, ...s } }, false, 'setSettings'),
 
-  strategies: [makeStrat(1), makeStrat(2)],
-
-  addStrategy: () =>
-    set((state) => ({
-      strategies: [
-        ...state.strategies,
-        makeStrat(state.strategies.length + 1),
-      ],
-    })),
-
-  removeStrategy: (id) =>
-    set((state) => ({
-      strategies: state.strategies.filter((s) => s.id !== id),
-    })),
-
-  updateStrategy: (id, patch) =>
-    set((state) => ({
-      strategies: state.strategies.map((s) =>
-        s.id === id ? { ...s, ...patch } : s
-      ),
+  addSlot: () => set(st => ({ slots: [...st.slots, defaultSlot(st.slots.length + 1)] })),
+  removeSlot: (id) => set(st => ({ slots: st.slots.filter(s => s.id !== id) })),
+  updateSlot: (id, patch) =>
+    set(st => ({ slots: st.slots.map(s => (s.id === id ? { ...s, ...patch } : s)) })),
+  setSlotParam: (id, key, value) =>
+    set(st => ({
+      slots: st.slots.map(s => s.id === id ? { ...s, paramOverrides: { ...s.paramOverrides, [key]: value } } : s),
     })),
 
   bootFromStorage: () => {
     try {
-      const raw = localStorage.getItem('l2dash_store');
+      const raw = typeof localStorage !== 'undefined' ? localStorage.getItem(STORAGE_KEY) : null;
       if (raw) {
         const parsed = JSON.parse(raw);
-        // basic shape guard
-        if (parsed.settings && parsed.strategies) {
-          set(parsed);
+        if (parsed && parsed.settings && Array.isArray(parsed.slots)) {
+          set({
+            settings: { ...defaultSettings, ...parsed.settings },
+            slots: parsed.slots.length ? parsed.slots : [defaultSlot(1), defaultSlot(2)],
+          });
         }
       }
-    } catch {
-      /* ignore */
-    }
-    // persist on every change
-    const unsub = useStrategyStore.subscribe((st) => {
+    } catch { /* ignore */ }
+    useStrategyStore.subscribe((st) => {
       try {
-        localStorage.setItem(
-          'l2dash_store',
-          JSON.stringify({ settings: st.settings, strategies: st.strategies })
-        );
-      } catch {
-        /* ignore */
-      }
+        if (typeof localStorage !== 'undefined') {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify({ settings: st.settings, slots: st.slots }));
+        }
+      } catch { /* ignore */ }
     });
-    // If you ever need to stop persisting:
-    // (get() as any).__unsubPersist = unsub;
   },
 }));
-
-function makeStrat(n: number): Strategy {
-  return {
-    id: crypto.randomUUID(),
-    name: `Strategy ${n}`,
-    symbol: n === 1 ? 'AAPL' : 'MSFT',
-    running: false,
-    riskPct: 0.5,
-    size: 100,
-    report: { pnl: 0, trades: 0, winRate: NaN, maxDD: 0 },
-  };
-}
