@@ -1,0 +1,8 @@
+{
+  "id": "json-demo",
+  "description": "BUY then SELL",
+  "signals": [
+    { "symbol": "DEMO", "price": 100, "qty": 1, "side": "BUY",  "time": "2025-09-30T10:00:00Z" },
+    { "symbol": "DEMO", "price": 101, "qty": 1, "side": "SELL", "time": "2025-09-30T10:30:00Z" }
+  ]
+}

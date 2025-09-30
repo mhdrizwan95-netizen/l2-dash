@@ -4,13 +4,12 @@ import fs from "fs";
 import path from "path";
 
 // Types only (erased at runtime)
-type TradeSignal = import("../../strategies/loader").TradeSignal;
-type FileStrategy = import("../../strategies/loader").FileStrategy;
+type StrategyDefinition = import("../../strategies/types").StrategyDefinition;
 // Runtime load via CommonJS require (avoids ESM cross-compat issues)
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { loadStrategies } = require("../../strategies/loader");
 
-type Fill = TradeSignal & { value: number; fee: number; pnl?: number };
+type Fill = import("../../strategies/types").TradeSignal & { value: number; fee: number; pnl?: number };
 type SessionLog = {
   session: "file-strategies";
   dateUTC: string;
@@ -48,15 +47,26 @@ function calcPnL(fills: Fill[]) {
   const isoDate = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())).toISOString();
   const dateUTC = isoDate.slice(0,10);
 
-  const strategies: FileStrategy[] = await loadStrategies("strategies");
+
+  const strategies: StrategyDefinition[] = await loadStrategies("strategies");
   if (strategies.length === 0) {
-    console.error("No strategies loaded. Add .ts or .json files under strategies/.");
+    console.error("No strategies loaded. Add .strategy.ts files under strategies/.");
     process.exit(2);
+  }
+
+  // Load param overrides if present
+  let paramOverrides: Record<string, any> = {};
+  const paramsPath = path.join("strategies", "params.json");
+  if (fs.existsSync(paramsPath)) {
+    try {
+      paramOverrides = JSON.parse(fs.readFileSync(paramsPath, "utf8"));
+    } catch {}
   }
 
   const fills: Fill[] = [];
   for (const s of strategies) {
-    const sigs = await s.generateSignals(isoDate);
+    const params = { ...s.ui.defaults, ...(paramOverrides[s.id] || {}) };
+    const sigs = await s.generateSignals(params, isoDate);
     for (const k of sigs) {
       const fee = 1.00;
       fills.push({ ...k, value: k.price * k.qty * (k.side === "BUY" ? -1 : 1), fee });
