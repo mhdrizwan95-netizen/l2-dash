@@ -2,6 +2,19 @@ import { create } from 'zustand';
 import { subscribeWithSelector } from 'zustand/middleware';
 import { makeRafBatcher } from './rafBatch';
 
+// Shared immutable empty arrays/objects to avoid unnecessary re-renders
+const EMPTY_ARR: any[] = [];
+const DEFAULT_WATCHLIST = ['AAPL','GOOGL','MSFT','TSLA','NVDA','META'];
+
+type ExtendedTelemetry = Telemetry & {
+  watchlist?: string[];
+  ticks?: Record<string, any>;
+  positions?: Record<string, any>;
+  fills?: any[];
+  guardrails?: any[];
+  guardrailStore?: any;
+};
+
 type Telemetry = {
   focused: string | null;
   hbAgeMs: number;
@@ -28,3 +41,16 @@ export const scheduleTelemetry = makeRafBatcher<Telemetry>(
 
 // Backward compatibility - keep old exports for now
 export const useTelemetryStore = useTelemetry;
+
+// Safe, selector-based subscriptions (prevents re-render storms + guards undefined)
+export const useActiveSymbol = () =>
+  useTelemetryStore(s => (s as ExtendedTelemetry).activeSymbol ?? (s as ExtendedTelemetry).watchlist?.[0] ?? DEFAULT_WATCHLIST[0]);
+
+export const useActiveTicks = () =>
+  useTelemetryStore(s => {
+    const sym = (s as ExtendedTelemetry).activeSymbol ?? (s as ExtendedTelemetry).watchlist?.[0] ?? DEFAULT_WATCHLIST[0];
+    return (s as ExtendedTelemetry).ticks?.[sym] ?? EMPTY_ARR;
+  });
+
+export const useTicksFor = (sym?: string | null) =>
+  useTelemetryStore(s => ((s as ExtendedTelemetry).ticks?.[sym ?? ''] ?? EMPTY_ARR));

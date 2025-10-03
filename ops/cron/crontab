@@ -1,0 +1,14 @@
+# L2 Dash Cron Jobs
+# Schedule format: minute hour day month day-of-week command
+
+# Nightly backup at 2 AM UTC
+0 2 * * * /app/backup.sh nightly
+
+# Health monitoring every 5 minutes
+*/5 * * * * /app/health-monitor.sh once
+
+# Weekly cleanup of old logs (Monday at 3 AM UTC)
+0 3 * * 1 find /data -name "*.log" -mtime +7 -delete 2>/dev/null || true
+
+# Daily validation of cron service (6 AM UTC)
+0 6 * * * echo "Cron service health check: $(date -u)" >> /tmp/cron_health.log && tail -100 /tmp/cron_health.log > /tmp/cron_health.log.tmp && mv /tmp/cron_health.log.tmp /tmp/cron_health.log

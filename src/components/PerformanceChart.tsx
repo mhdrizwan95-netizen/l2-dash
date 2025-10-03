@@ -1,26 +1,44 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useEffect, useRef } from 'react';
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
-import { useTelemetryStore, type TickHistoryPoint } from '@/lib/telemetryStore';
+import { useTelemetryStore } from '@/lib/telemetryStore';
 import { useDashboardStore, TIME_RANGES } from '@/lib/dashboardStore';
+
+interface TickHistoryPoint {
+  ts: number;
+  price: number;
+}
 
 const EMPTY_HISTORY: TickHistoryPoint[] = [];
 
 export function PerformanceChart({ symbol }: { symbol?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    const el = ref.current;
+
+    const ro = new ResizeObserver(() => {
+      // Chart resizes automatically with ResponsiveContainer
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
   const timeRange = useDashboardStore((state) => state.timeRange);
   const setTimeRange = useDashboardStore((state) => state.setTimeRange);
   const selectedSymbol = useDashboardStore((state) => state.selectedSymbol);
   const activeSymbol = symbol ?? selectedSymbol ?? null;
-  const entry = useTelemetryStore((state) => (activeSymbol ? state.ticks[activeSymbol] ?? null : null));
+  const entry = useTelemetryStore((state) => (activeSymbol ? (state as any).ticks?.[activeSymbol] ?? null : null));
   const history = entry?.history ?? EMPTY_HISTORY;
 
   const data = useMemo(() => {
     if (!history.length) return [] as Array<{ date: string; value: number }>;
     const cutoff = timeRange.ms === Infinity ? 0 : Date.now() - timeRange.ms;
-    const filtered = history.filter((point) => point.ts >= cutoff);
+    const filtered = history.filter((point: TickHistoryPoint) => point.ts >= cutoff);
     const target = filtered.length ? filtered : history;
-    return target.map((point) => ({
+    return target.map((point: TickHistoryPoint) => ({
       date: new Date(point.ts).toLocaleTimeString(),
       value: point.price,
     }));

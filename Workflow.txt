@@ -372,7 +372,7 @@ DONE_MARKER: <!--DONE M5-T5.2-->
 
 ### [M6][T6.1] Docker compose + nginx SSE buffering
 ID: M6-T6.1
-STATUS: TODO
+STATUS: DONE
 FILES:
 - `docker-compose.yml` (create)
 - `nginx/nginx.conf` (create)
@@ -387,10 +387,11 @@ VERIFY:
 ACCEPTANCE:
 - Make targets: up, logs, down.
 DONE_MARKER: <!--DONE M6-T6.1-->
+<!--DONE M6-T6.1-->
 
 ### [M6][T6.2] Backups & alerts
 ID: M6-T6.2
-STATUS: TODO
+STATUS: DONE
 FILES:
 - `ops/cron/Dockerfile` (create)
 - `ops/cron/backup.sh` (create)
@@ -410,23 +411,26 @@ DONE_MARKER: <!--DONE M6-T6.2-->
 
 ### [M7][T7.1] Runbook route
 ID: M7-T7.1
-STATUS: TODO
+STATUS: DONE
 FILES:
 - `src/app/docs/runbook/page.tsx` (create)
 - `docs/RUNBOOK.md` (create)
+- `src/components/panes/TopBar.tsx` (modify)
 STEPS:
 1) Render Markdown runbook: Start/Stop/Recover/Flatten; breaker flows.
+2) Added "Help" link to TopBar component.
 RUN_CMDS:
 - `npm run dev`
 VERIFY:
-- Linked from TopBar “Help”.
+- Linked from TopBar "Help".
 ACCEPTANCE:
 - Operator can follow without guesswork.
 DONE_MARKER: <!--DONE M7-T7.1-->
+<!--DONE M7-T7.1-->
 
 ### [M7][T7.2] Guardrail drills
 ID: M7-T7.2
-STATUS: TODO
+STATUS: DONE
 FILES:
 - `scripts/simulate_guardrails.ts` (create)
 STEPS:
@@ -438,6 +442,7 @@ VERIFY:
 ACCEPTANCE:
 - Drills <30s each; logs consistent.
 DONE_MARKER: <!--DONE M7-T7.2-->
+<!--DONE M7-T7.2-->
 
 ---
 

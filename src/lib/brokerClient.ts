@@ -1,4 +1,5 @@
 import { useCockpitStore } from './cockpitStore';
+import { TRADING_MODE, LIVE_QTY_CAP } from './featureFlags';
 
 // Order request interface matching Python schemas
 export interface OrderRequest {
@@ -104,6 +105,14 @@ class BrokerClient {
   async placeOrder(orderReq: OrderRequest): Promise<OrderAck> {
     if (!this.getTradingEnabled()) {
       throw new BrokerError('Trading is disabled', 'TRADING_DISABLED');
+    }
+
+    // Live mode quantity cap enforcement
+    if (TRADING_MODE === 'live' && orderReq.qty > LIVE_QTY_CAP) {
+      throw new BrokerError(
+        `Live mode quantity cap exceeded: ${orderReq.qty} > ${LIVE_QTY_CAP} shares`,
+        'LIVE_QTY_CAP_EXCEEDED'
+      );
     }
 
     try {

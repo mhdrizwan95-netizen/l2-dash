@@ -7,6 +7,53 @@
 /* optional tweaks */
 html, body { height: 100%; }
 
+/* Layout protection - prevent 1px collapses */
+html, body, #__next, main { height: 100%; }
+main { min-height: 100vh; overflow: hidden; }
+
+/* Debug styles - remove after testing */
+.rp-Panel { outline: 1px dashed #555; }
+/* .rp-ResizeHandle { background: #777; } */ /* Commented out - conflicts with .rp-handle */
+
+/* Layout debugging - identify overflow offenders */
+.outline-all > * { outline: 1px dashed #444; }
+html, body { background: #0b0b0b; }
+html, body, main { overflow-x: hidden; }
+body { overscroll-behavior: contain; }
+:root { --debug-red: rgba(255,0,0,.15); }
+
+/* Big, easy-to-grab hitbox for react-resizable-panels */
+.rp-handle {
+  position: relative;
+  z-index: 80;                 /* above cards/charts */
+  background: transparent;
+  pointer-events: auto;
+  touch-action: none;
+  flex: 0 0 auto;
+}
+.rp-handle[data-resize-handle-direction="horizontal"] { width: 10px; cursor: col-resize; }
+.rp-handle[data-resize-handle-direction="vertical"]   { height: 10px; cursor: row-resize; }
+
+/* thin line centered inside the fat hitbox */
+.rp-handle::after {
+  content: "";
+  position: absolute; inset: 0; margin: auto;
+  background: rgba(255,255,255,.26);
+  border-radius: 9999px;
+}
+.rp-handle[data-resize-handle-direction="horizontal"]::after { width: 2px; height: 100%; }
+.rp-handle[data-resize-handle-direction="vertical"]::after   { height: 2px; width: 100%; }
+.rp-handle:hover::after { background: rgba(255,255,255,.48); }
+
+/* smoother drag */
+.is-dragging, .is-dragging * { user-select: none !important; -webkit-user-select: none !important; }
+
+/* optional: keyboard resizing outline */
+.handle:focus-visible {
+  outline: 2px solid rgba(99,102,241,0.6); /* indigo-500 */
+  outline-offset: 1px;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

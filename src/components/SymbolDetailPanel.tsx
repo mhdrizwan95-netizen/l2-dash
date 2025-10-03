@@ -12,7 +12,7 @@ export function SymbolDetailPanel() {
   const setTimeRange = useDashboardStore((state) => state.setTimeRange);
   const selectedSymbols = useDashboardStore((state) => state.selectedSymbols);
   const setSelectedSymbol = useDashboardStore((state) => state.setSelectedSymbol);
-  const tickEntry = useTelemetryStore((state) => (selectedSymbol ? state.ticks[selectedSymbol] : null));
+  const tickEntry = useTelemetryStore((state) => (selectedSymbol ? (state as any).ticks?.[selectedSymbol] ?? null : null));
   const positions = useTelemetryStore((state) => state.positions);
   const fills = useTelemetryStore((state) => state.fills);
   const guardrails = useTelemetryStore((state) => state.guardrails);

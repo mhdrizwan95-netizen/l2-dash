@@ -104,3 +104,15 @@ export function resetAllLayouts(): void {
   keysToRemove.forEach(key => localStorage.removeItem(key));
   window.location.reload();
 }
+
+// New clamp utilities for layout persistence safety
+export function clampLayout(sizes: number[], min = 5, max = 90): number[] {
+  if (!Array.isArray(sizes) || sizes.some(n => !Number.isFinite(n))) return [];
+  const clamped = sizes.map(n => Math.max(min, Math.min(max, n)));
+  const total = clamped.reduce((a, b) => a + b, 0);
+  return total > 0 ? clamped.map(n => (n / total) * 100) : [];
+}
+
+export function safeArray<T = number>(a: any, fallback: T[]): T[] {
+  return Array.isArray(a) && a.every((n) => Number.isFinite(n)) ? a : fallback;
+}

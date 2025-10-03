@@ -39,8 +39,17 @@ export function TopBar() {
         })}
       </div>
 
-      {/* Right side: Reset Layout + Connection Status */}
+      {/* Right side: Help + Reset Layout + Connection Status */}
       <div className="flex items-center gap-3">
+        <a
+          href="/docs/runbook"
+          className="px-2 py-0.5 text-xs bg-blue-600 hover:bg-blue-700 text-white rounded transition-colors"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="View operational runbook"
+        >
+          Help
+        </a>
         <button
           onClick={handleResetLayout}
           className="px-2 py-0.5 text-xs bg-orange-600 hover:bg-orange-700 text-white rounded transition-colors"
