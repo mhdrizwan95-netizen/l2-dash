@@ -7,24 +7,26 @@ export function ParamsForm({
   onChange,
 }: {
   file: StrategyFile;
-  values: Record<string, any>;
-  onChange: (k: string, v: any) => void;
+  values: Record<string, unknown>;
+  onChange: (key: string, value: unknown) => void;
 }) {
-  const v = (k: string) => (values[k] ?? file.defaults[k]);
+  const getValue = (key: string): unknown => values[key] ?? file.defaults[key];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-      {file.schema.map((f) => {
+    <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+      {(file.schema ?? []).map((f) => {
         if (f.type === 'number') {
+          const current = getValue(f.key);
+          const inputValue = typeof current === 'number' ? current : '';
           return (
             <label key={f.key} className="text-sm">
               {f.label}
               <input
                 type="number"
-                min={('min' in f) ? (f as any).min : undefined}
-                max={('max' in f) ? (f as any).max : undefined}
-                step={('step' in f) ? (f as any).step : 1}
-                value={v(f.key)}
+                min={f.min ?? undefined}
+                max={f.max ?? undefined}
+                step={f.step ?? 1}
+                value={inputValue}
                 onChange={(e) => onChange(f.key, e.target.value === '' ? '' : Number(e.target.value))}
                 className="mt-1 w-full bg-zinc-800 rounded-lg p-2"
               />
@@ -32,11 +34,12 @@ export function ParamsForm({
           );
         }
         if (f.type === 'boolean') {
+          const current = getValue(f.key);
           return (
             <label key={f.key} className="text-sm inline-flex items-center gap-2">
               <input
                 type="checkbox"
-                checked={!!v(f.key)}
+                checked={Boolean(current)}
                 onChange={(e) => onChange(f.key, e.target.checked)}
               />
               {f.label}
@@ -44,11 +47,13 @@ export function ParamsForm({
           );
         }
         if (f.type === 'select') {
+          const current = getValue(f.key);
+          const value = typeof current === 'string' ? current : '';
           return (
             <label key={f.key} className="text-sm">
               {f.label}
               <select
-                value={v(f.key)}
+                value={value}
                 onChange={(e) => onChange(f.key, e.target.value)}
                 className="mt-1 w-full bg-zinc-800 rounded-lg p-2"
               >

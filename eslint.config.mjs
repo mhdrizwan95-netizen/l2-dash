@@ -20,6 +20,28 @@ const eslintConfig = [
       "next-env.d.ts",
     ],
   },
+  {
+    files: ["**/*.{js,jsx,ts,tsx}"],
+    rules: {
+      "no-restricted-syntax": [
+        "error",
+        {
+          selector: "CallExpression[callee.object.name='localStorage'][callee.property.name='getItem']",
+          message: "Use persist utils instead of direct localStorage.getItem()"
+        },
+        {
+          selector: "CallExpression[callee.object.name='localStorage'][callee.property.name='setItem']",
+          message: "Use persist utils instead of direct localStorage.setItem()"
+        }
+      ]
+    }
+  },
+  {
+    files: ["src/lib/persist/**/*.{js,jsx,ts,tsx}"],
+    rules: {
+      "no-restricted-syntax": "off"
+    }
+  }
 ];
 
 export default eslintConfig;

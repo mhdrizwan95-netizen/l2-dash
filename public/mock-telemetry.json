@@ -1,0 +1,101 @@
+{
+  "positions": {
+    "AAPL": {
+      "symbol": "AAPL",
+      "qty": 100,
+      "avgPx": 254.23,
+      "realizedPnL": 1250.5,
+      "sector": "Technology",
+      "mktPx": 256.78,
+      "lastFillTs": "2025-10-01T06:15:00.000Z"
+    },
+    "MSFT": {
+      "symbol": "MSFT",
+      "qty": 50,
+      "avgPx": 418.9,
+      "realizedPnL": 892.3,
+      "sector": "Technology",
+      "mktPx": 421.45,
+      "lastFillTs": "2025-10-01T05:30:00.000Z"
+    },
+    "NVDA": {
+      "symbol": "NVDA",
+      "qty": -25,
+      "avgPx": 145.2,
+      "realizedPnL": 210.75,
+      "sector": "Technology",
+      "mktPx": 142.8,
+      "lastFillTs": "2025-10-01T04:45:00.000Z"
+    }
+  },
+  "ticks": {
+    "AAPL": {
+      "symbol": "AAPL",
+      "price": 256.78,
+      "timestamp": 1759288771301,
+      "volume": 1250000
+    },
+    "MSFT": {
+      "symbol": "MSFT",
+      "price": 421.45,
+      "timestamp": 1759288770301,
+      "volume": 780000
+    },
+    "NVDA": {
+      "symbol": "NVDA",
+      "price": 142.8,
+      "timestamp": 1759288770801,
+      "volume": 2100000
+    },
+    "SPY": {
+      "symbol": "SPY",
+      "price": 572.3,
+      "timestamp": 1759288771801,
+      "volume": 15000000
+    }
+  },
+  "guardrails": [
+    {
+      "rule": "DD",
+      "level": "WARN",
+      "message": "3.2%",
+      "timestamp": 1759288742301
+    },
+    {
+      "rule": "POSITION",
+      "level": "OK",
+      "message": "Max position size OK",
+      "timestamp": 1759288752301
+    }
+  ],
+  "markov": {
+    "state": 1,
+    "stateLabel": "Bull Momentum",
+    "confidence": 0.85,
+    "entropy": 0.32,
+    "timeInStateSec": 180,
+    "probs": [
+      0.12,
+      0.85,
+      0.03
+    ]
+  },
+  "fills": [
+    {
+      "ts": 1759288712301,
+      "symbol": "AAPL",
+      "side": "BUY",
+      "qty": 10,
+      "price": 256.45,
+      "pnl": 122
+    },
+    {
+      "ts": 1759288652301,
+      "symbol": "MSFT",
+      "side": "BUY",
+      "qty": 5,
+      "price": 420.8,
+      "pnl": 32.5
+    }
+  ]
+}

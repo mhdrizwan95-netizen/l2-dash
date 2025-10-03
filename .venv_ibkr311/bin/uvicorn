@@ -1,4 +1,4 @@
-#!/Users/mrz/l2-dash/.venv_ibkr311/bin/python3.11
+#!/Users/mrz/l2-dash/l2-dash/.venv_ibkr311/bin/python
 import sys
 from uvicorn.main import main
 if __name__ == '__main__':

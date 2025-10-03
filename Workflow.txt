@@ -1,0 +1,528 @@
+# WORKFLOW — L2 HMM Trading System (Executable Script)
+
+This file is the execution plan. AI must follow it top-to-bottom.
+**Never** skip tickets unless operator specifies a ticket ID explicitly.
+
+---
+
+## SESSION_PROTOCOL
+- Always re-read this file at session start.
+- Work on **one ticket at a time**.
+- For each ticket:
+  1) Apply the STEPS.
+  2) Run the RUN_CMDS.
+  3) Manually verify the VERIFY checklist.
+  4) Ensure ACCEPTANCE passes.
+  5) Set `STATUS: DONE` and append the `DONE_MARKER`.
+  6) Summarize changes in ≤200 words in `CHANGELOG.md`.
+- Keep diffs small; no unrelated edits.
+- If blocked, create a `BLOCKED:` note under the ticket and stop.
+
+## GLOBALS
+- NAMESPACE_KEYS:
+  - Cockpit: `cockpit:v1:{tab}`
+  - Analytics: `dash:v2:{mode}:{tab}[:symbol?]`
+- FEATURE_FLAGS: `DISABLE_LEGACY_DASHBOARD`, `USE_LEGACY`
+- GUARDRAILS: `SPREAD, POS, COOL, LAT, DD, KILL, CONF, DRIFT`
+- PERF_BUDGETS: `>50fps cockpit`, `SSE reconnect <3s`, `update→paint <16ms`
+- SCRIPTS (expected):
+  - `npm run dev`
+  - `npm run build`
+  - `npm run lint`
+  - `npm run typecheck`
+  - `npm run test:e2e` (when added)
+
+---
+
+## M0 — Hygiene & Isolation
+
+### [M0][T0.1] Cockpit route + feature flags
+ID: M0-T0.1
+STATUS: DONE
+FILES:
+- `src/components/layout/TradingCockpit.tsx` (create, client component scaffold)
+- `src/app/cockpit/page.tsx` (create: `export { default } from '@/components/layout/TradingCockpit'`)
+- `src/lib/featureFlags.ts` (create)
+STEPS:
+1) Create minimal `TradingCockpit.tsx` split-row/column scaffold (no RGL).
+2) Create `featureFlags.ts` exporting `DISABLE_LEGACY_DASHBOARD` and `USE_LEGACY` from `process.env`.
+3) Create `/cockpit` route exporting the cockpit.
+RUN_CMDS:
+- `npm run lint && npm run typecheck && npm run dev`
+VERIFY:
+- Visit `/cockpit`; scaffold renders.
+ACCEPTANCE:
+- Build passes; cockpit renders with no legacy imports.
+DONE_MARKER: <!--DONE M0-T0.1-->
+<!--DONE M0-T0.1-->
+
+### [M0][T0.2] Namespaced persistence utils
+ID: M0-T0.2
+STATUS: DONE
+FILES:
+- `src/lib/persist/cockpit.ts` (create)
+- `src/lib/persist/analytics.ts` (create)
+STEPS:
+1) Implement `saveLocal(key,data)` and `loadLocal(key)` with debounce (200ms).
+2) Cockpit key: `cockpit:v1:{tab}`; Analytics key: `dash:v2:{mode}:{tab}[:symbol?]`.
+RUN_CMDS:
+- `npm run lint && npm run typecheck`
+VERIFY:
+- Import in cockpit scaffold; write/read a small test pref.
+ACCEPTANCE:
+- No writes to old `l2dash:*` keys.
+DONE_MARKER: <!--DONE M0-T0.2-->
+<!--DONE M0-T0.2-->
+
+### [M0][T0.3] ESLint guardrail for storage
+ID: M0-T0.3
+STATUS: DONE
+FILES:
+- `.eslintrc.*` (modify)
+STEPS:
+1) Add `no-restricted-properties` to forbid raw `localStorage.getItem/setItem` outside `src/lib/persist/*`.
+RUN_CMDS:
+- `npm run lint`
+VERIFY:
+- Any direct localStorage in other files fails lint.
+ACCEPTANCE:
+- Lint gate active.
+DONE_MARKER: <!--DONE M0-T0.3-->
+<!--DONE M0-T0.3-->
+
+### [M0][T0.4] Scope legacy CSS and route
+ID: M0-T0.4
+STATUS: DONE
+FILES:
+- `src/app/globals.css` (modify)
+- legacy dashboard layout file (wrap root with `.legacy-dashboard` class)
+STEPS:
+1) Prefix legacy grid styles with `.legacy-dashboard`.
+2) Apply `.legacy-dashboard` class only on legacy routes/pages.
+RUN_CMDS:
+- `npm run build`
+VERIFY:
+- Cockpit styles unaffected when toggling legacy page.
+ACCEPTANCE:
+- No style bleed into cockpit.
+DONE_MARKER: <!--DONE M0-T0.4-->
+<!--DONE M0-T0.4-->
+
+### [M0][T0.5] Rollback switch
+ID: M0-T0.5
+STATUS: DONE
+FILES:
+- `src/lib/featureFlags.ts` (modify)
+- `.env.example` (modify)
+STEPS:
+1) Wire `USE_LEGACY` so setting it enables legacy dashboard path in nav/shell.
+RUN_CMDS:
+- `npm run build`
+VERIFY:
+- Flipping `USE_LEGACY=1` shows legacy entry point again.
+ACCEPTANCE:
+- 1-minute rollback path works.
+DONE_MARKER: <!--DONE M0-T0.5-->
+<!--DONE M0-T0.5-->
+
+---
+
+## M1 — Cockpit Scaffold
+
+### [M1][T1.1] Split-pane skeleton & persistence
+ID: M1-T1.1
+STATUS: DONE
+FILES:
+- `src/components/layout/TradingCockpit.tsx` (modify)
+- `src/lib/persist/cockpit.ts` (use)
+STEPS:
+1) Use `react-resizable-panels` for layout:
+   - TopBar
+   - Middle: LeftWatchlist | Center (Ladder+OrderTicket+HMMStateStrip) | Right Microcharts
+   - Bottom: Tape | OrdersFillsPositions
+   - BottomBar
+2) Persist pane sizes per tab (`cockpit:v1:{tab}`).
+RUN_CMDS:
+- `npm run dev`
+VERIFY:
+- Resize panes, reload, sizes persist.
+ACCEPTANCE:
+- No RGL imports; tab-scoped persistence works.
+DONE_MARKER: <!--DONE M1-T1.1-->
+<!--DONE M1-T1.1-->
+
+### [M1][T1.2] Hotkeys
+ID: M1-T1.2
+STATUS: DONE
+FILES:
+- `src/components/layout/TradingCockpit.tsx` (modify)
+- `src/lib/cockpitStore.ts` (create) — `tradingEnabled`, hotkey handlers
+STEPS:
+1) Add global hotkeys: Kill (Ctrl/Cmd+K), Flatten (Ctrl/Cmd+F), Reconnect (R), Mode toggle (F1).
+2) Disable actions when `tradingEnabled=false`.
+RUN_CMDS:
+- `npm run dev`
+VERIFY:
+- Console logs show hotkeys firing; disabled state respected.
+ACCEPTANCE:
+- Clean keydown listeners with teardown.
+DONE_MARKER: <!--DONE M1-T1.2-->
+<!--DONE M1-T1.2-->
+
+### [M1][T1.3] Watchlist & symbol focus
+ID: M1-T1.3
+STATUS: DONE
+FILES:
+- `src/components/panes/LeftWatchlist.tsx` (create)
+- `src/lib/cockpitStore.ts` (modify)
+STEPS:
+1) Dense table: Symbol | Δ | Spread bps | HMM state (mock data ok).
+2) Arrow keys navigate; Enter focuses ladder symbol.
+RUN_CMDS:
+- `npm run dev`
+VERIFY:
+- Ladder+Microcharts reflect focused symbol.
+ACCEPTANCE:
+- Keyboard-only operation possible.
+DONE_MARKER: <!--DONE M1-T1.3-->
+<!--DONE M1-T1.3-->
+
+---
+
+## M2 — Canonical Streams & Contracts
+
+### [M2][T2.1] TS contracts
+ID: M2-T2.1
+STATUS: DONE
+FILES:
+- `src/lib/contracts.ts` (create)
+STEPS:
+1) Define interfaces for SSE: `/exec/fills`, `/blotter/ticks`, `/hmm/state`, `/health/all`, `/exec/guardrails`, `/ml/latency`, `/exec/latency`.
+2) Export type guards and sample payload builders for dev.
+RUN_CMDS:
+- `npm run typecheck`
+VERIFY:
+- Types compile; example usage in a test file.
+ACCEPTANCE:
+- All event types centrally defined.
+DONE_MARKER: <!--DONE M2-T2.1-->
+<!--DONE M2-T2.1-->
+
+### [M2][T2.2] Dev SSE multiplexer
+ID: M2-T2.2
+STATUS: DONE
+FILES:
+- `src/app/api/dev/sse/route.ts` (create)
+- `src/lib/devSseClient.ts` (create)
+STEPS:
+1) Emit synthetic ticks/state/fills/latency for 10 symbols at 10–50 Hz bursts.
+2) Client hook with backoff/reconnect.
+RUN_CMDS:
+- `npm run dev`
+VERIFY:
+- Cockpit runs smoothly for 30 min under synthetic load.
+ACCEPTANCE:
+- >50fps feel; no memory leak symptoms.
+DONE_MARKER: <!--DONE M2-T2.2-->
+<!--DONE M2-T2.2-->
+
+### [M2][T2.3] Zustand stores
+ID: M2-T2.3
+STATUS: DONE
+FILES:
+- `src/lib/telemetryStore.ts` (create)
+- `src/lib/guardrailStore.ts` (create)
+- `src/lib/ordersStore.ts` (create)
+STEPS:
+1) Selector-based subscriptions to avoid re-render storms.
+2) rAF batching for UI paints where relevant.
+RUN_CMDS:
+- `npm run lint && npm run typecheck`
+VERIFY:
+- Stores remain responsive under load, profiler shows minimal re-renders.
+ACCEPTANCE:
+- All event types centrally defined.
+DONE_MARKER: <!--DONE M2-T2.3-->
+<!--DONE M2-T2.3-->
+
+---
+
+## M3 — Guardrails & Audit
+
+### [M3][T3.1] Guardrail badges + bottom log
+ID: M3-T3.1
+STATUS: DONE
+FILES:
+- `src/components/panes/TopBar.tsx` (create)
+- `src/components/panes/BottomBar.tsx` (create)
+- `src/lib/guardrailStore.ts` (modify)
+STEPS:
+1) Pills for SPREAD, POS, COOL, LAT, DD, KILL, CONF, DRIFT.
+2) Rolling log (500 entries), newest first.
+RUN_CMDS:
+- `npm run dev`
+VERIFY:
+- Synthetic guardrail events render within 300ms.
+ACCEPTANCE:
+- Counters and log consistent.
+DONE_MARKER: <!--DONE M3-T3.1-->
+<!--DONE M3-T3.1-->
+
+### [M3][T3.2] Suggest vs Execute stream
+ID: M3-T3.2
+STATUS: DONE
+FILES:
+- `src/components/panes/OrdersFillsPositions.tsx` (modify)
+- `src/lib/contracts.ts` (extend `/exec/suggest_exec`)
+STEPS:
+1) Show last 10 suggestions with executed or reason.
+2) Inline hint on the ticket when mismatch occurs.
+RUN_CMDS:
+- `npm run dev`
+VERIFY:
+- Suggestions chain to executions or reasons.
+ACCEPTANCE:
+- Delay ≤1s from event to UI.
+DONE_MARKER: <!--DONE M3-T3.2-->
+<!--DONE M3-T3.2-->
+
+---
+
+## M4 — Analytics Dashboard
+
+### [M4][T4.1] Merged cards + default layout
+ID: M4-T4.1
+STATUS: DONE
+FILES:
+- `src/components/analytics/*` (create merged cards)
+- `src/components/L2Dashboard.tsx` (ensure grid-only here)
+STEPS:
+1) Build merged cards: PnL&Price, Exposure&Notional, Positions, Decisions&Actions, States&Returns, ModelHealth, Latency, Connectivity&Health, Universe/Screener.
+2) Provide default 12-col layout seed; Reset & Lock controls.
+RUN_CMDS:
+- `npm run dev`
+VERIFY:
+- Drag/snap works; Reset & Lock work.
+ACCEPTANCE:
+- No cockpit deps.
+DONE_MARKER: <!--DONE M4-T4.1-->
+<!--DONE M4-T4.1-->
+
+### [M4][T4.2] Per-mode persistence; optional symbol
+ID: M4-T4.2
+STATUS: DONE
+FILES:
+- `src/lib/persist/analytics.ts` (modify)
+- `src/components/analytics/Settings.tsx` (create)
+STEPS:
+1) Persist keys as `dash:v2:{mode}:{tab}`.
+2) Add settings toggle to include `:{symbol}` (off by default).
+RUN_CMDS:
+- `npm run dev`
+VERIFY:
+- Keys change when toggle flips.
+ACCEPTANCE:
+- Default is not per-symbol.
+DONE_MARKER: <!--DONE M4-T4.2-->
+<!--DONE M4-T4.2-->
+
+---
+
+## M5 — IBKR Paper & Ops
+
+### [M5][T5.1] Broker client + SSE
+ID: M5-T5.1
+STATUS: DONE
+FILES:
+- `src/lib/brokerClient.ts` (create)
+- `src/lib/contracts.ts` (ensure broker status/fills)
+STEPS:
+1) Implement `placeOrder`, `cancel`, `flattenAll` with retries/backoff.
+2) Subscribe to `/broker/status`, `/exec/fills`.
+RUN_CMDS:
+- `npm run dev`
+VERIFY:
+- 1-share paper order succeeds; fill ≤500ms; order→fill latency computed.
+ACCEPTANCE:
+- Errors surfaced with human-readable reasons.
+DONE_MARKER: <!--DONE M5-T5.1-->
+<!--DONE M5-T5.1-->
+
+### [M5][T5.2] Ops controls in cockpit
+ID: M5-T5.2
+STATUS: DONE
+FILES:
+- `src/components/panes/BottomBar.tsx` (modify)
+- `src/lib/cockpitStore.ts` (modify)
+STEPS:
+1) Add Kill switch, Flatten All, Reconnect with confirmation dialogs.
+2) Disable when not ready.
+RUN_CMDS:
+- `npm run dev`
+VERIFY:
+- Controls mutate state and reflect readiness.
+ACCEPTANCE:
+- Guardrails respected.
+DONE_MARKER: <!--DONE M5-T5.2-->
+<!--DONE M5-T5.2-->
+
+---
+
+## M6 — Staging (NJ VPS)
+
+### [M6][T6.1] Docker compose + nginx SSE buffering
+ID: M6-T6.1
+STATUS: TODO
+FILES:
+- `docker-compose.yml` (create)
+- `nginx/nginx.conf` (create)
+- `Makefile` (create)
+STEPS:
+1) Compose services: blotter, ml-service, algo, broker-bridge, dashboard, nginx.
+2) Add healthchecks and shared `.env`.
+RUN_CMDS:
+- `docker compose up -d`
+VERIFY:
+- All `/health` green; reconnects <3s.
+ACCEPTANCE:
+- Make targets: up, logs, down.
+DONE_MARKER: <!--DONE M6-T6.1-->
+
+### [M6][T6.2] Backups & alerts
+ID: M6-T6.2
+STATUS: TODO
+FILES:
+- `ops/cron/Dockerfile` (create)
+- `ops/cron/backup.sh` (create)
+STEPS:
+1) Nightly models/logs backup; webhook alert on disconnect>60s.
+RUN_CMDS:
+- Trigger cron container manually to test.
+VERIFY:
+- Dated artifacts produced; alert received.
+ACCEPTANCE:
+- Docs updated with restore steps.
+DONE_MARKER: <!--DONE M6-T6.2-->
+
+---
+
+## M7 — Runbook & Drills
+
+### [M7][T7.1] Runbook route
+ID: M7-T7.1
+STATUS: TODO
+FILES:
+- `src/app/docs/runbook/page.tsx` (create)
+- `docs/RUNBOOK.md` (create)
+STEPS:
+1) Render Markdown runbook: Start/Stop/Recover/Flatten; breaker flows.
+RUN_CMDS:
+- `npm run dev`
+VERIFY:
+- Linked from TopBar “Help”.
+ACCEPTANCE:
+- Operator can follow without guesswork.
+DONE_MARKER: <!--DONE M7-T7.1-->
+
+### [M7][T7.2] Guardrail drills
+ID: M7-T7.2
+STATUS: TODO
+FILES:
+- `scripts/simulate_guardrails.ts` (create)
+STEPS:
+1) Simulate each guardrail breach; verify UI reacts & audit logs.
+RUN_CMDS:
+- `node scripts/simulate_guardrails.ts`
+VERIFY:
+- All codes appear; UI badges/log update.
+ACCEPTANCE:
+- Drills <30s each; logs consistent.
+DONE_MARKER: <!--DONE M7-T7.2-->
+
+---
+
+## M8 — Live Canary & Cutover
+
+### [M8][T8.1] Live mode caps & canary overlays
+ID: M8-T8.1
+STATUS: TODO
+FILES:
+- `src/lib/brokerClient.ts` (modify)
+- `src/components/analytics/*` (canary overlays)
+STEPS:
+1) `TRADING_MODE=live` gate + hard qty caps.
+2) Show canary state/probs overlays in Analytics.
+RUN_CMDS:
+- `npm run dev`
+VERIFY:
+- Orders>cap rejected; overlays render.
+ACCEPTANCE:
+- Clear messaging on rejections.
+DONE_MARKER: <!--DONE M8-T8.1-->
+
+### [M8][T8.2] Cutover & rollback
+ID: M8-T8.2
+STATUS: TODO
+FILES:
+- `.env.example` (modify)
+- `docs/CUTOVER.md` (create)
+STEPS:
+1) Enable `DISABLE_LEGACY_DASHBOARD=1`, hide legacy.
+2) Document 1-minute rollback via `USE_LEGACY=1`.
+RUN_CMDS:
+- `npm run build && docker compose up -d`
+VERIFY:
+- Cockpit default; rollback works.
+ACCEPTANCE:
+- Ops sign-off.
+DONE_MARKER: <!--DONE M8-T8.2-->
+
+### [M8][T8.3] Legacy deletion
+ID: M8-T8.3
+STATUS: TODO
+FILES:
+- Remove legacy pages/components
+- Remove `react-grid-layout` if unused
+STEPS:
+1) Delete dead code; update deps.
+RUN_CMDS:
+- `pnpm depcheck || npm run depcheck`
+VERIFY:
+- No imports from removed lib; bundle smaller.
+ACCEPTANCE:
+- CI green.
+DONE_MARKER: <!--DONE M8-T8.3-->
+
+---
+
+## CROSS-CUTTING
+
+### [SEC][AUTH] Protect SSE/WS & redact secrets
+ID: SEC-AUTH
+STATUS: TODO
+FILES:
+- `src/middleware.ts` or auth layer
+- log redact util
+ACCEPTANCE:
+- Unauthed → 401; no secrets in logs.
+DONE_MARKER: <!--DONE SEC-AUTH-->
+
+### [OBS][SLO] Heartbeat, latency, reconnect alerts
+ID: OBS-SLO
+STATUS: TODO
+FILES:
+- `src/lib/observability.ts`
+- alert webhook config
+ACCEPTANCE:
+- Red badge after two bad windows; alert in staging.
+DONE_MARKER: <!--DONE OBS-SLO-->
+
+### [CI][PIPELINE] Type/lint/e2e/perf budgets
+ID: CI-PIPELINE
+STATUS: TODO
+FILES:
+- `.github/workflows/ci.yml`
+- `playwright.config.ts`, tests
+ACCEPTANCE:
+- PRs blocked on failures; perf budgets enforced.
+DONE_MARKER: <!--DONE CI-PIPELINE-->

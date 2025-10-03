@@ -1,0 +1,2495 @@
+{
+  "version": 1,
+  "entries": {
+    "2f66b43d-af23-41e4-999b-21717ed19cfb::live::ALL": {
+      "layouts": {
+        "lg": [
+          {
+            "i": "overview-pnl",
+            "x": 0,
+            "y": 0,
+            "w": 4,
+            "h": 4,
+            "minW": 3,
+            "maxW": 6,
+            "minH": 4,
+            "maxH": 4
+          },
+          {
+            "i": "overview-dd",
+            "x": 4,
+            "y": 0,
+            "w": 2,
+            "h": 2,
+            "minW": 2,
+            "maxW": 3,
+            "minH": 2,
+            "maxH": 2
+          },
+          {
+            "i": "overview-exposure",
+            "x": 6,
+            "y": 0,
+            "w": 4,
+            "h": 2,
+            "minW": 3,
+            "maxW": 5,
+            "minH": 2,
+            "maxH": 2
+          },
+          {
+            "i": "overview-hmm",
+            "x": 10,
+            "y": 0,
+            "w": 2,
+            "h": 2,
+            "minW": 2,
+            "maxW": 3,
+            "minH": 2,
+            "maxH": 2
+          },
+          {
+            "i": "overview-trades",
+            "x": 8,
+            "y": 2,
+            "w": 2,
+            "h": 2,
+            "minW": 2,
+            "maxW": 3,
+            "minH": 2,
+            "maxH": 2
+          },
+          {
+            "i": "overview-health",
+            "x": 4,
+            "y": 2,
+            "w": 2,
+            "h": 2,
+            "minW": 2,
+            "maxW": 3,
+            "minH": 2,
+            "maxH": 2
+          },
+          {
+            "i": "overview-control",
+            "x": 6,
+            "y": 2,
+            "w": 2,
+            "h": 2,
+            "minW": 2,
+            "maxW": 3,
+            "minH": 2,
+            "maxH": 2
+          },
+          {
+            "i": "overview-watchlist",
+            "x": 0,
+            "y": 4,
+            "w": 4,
+            "h": 2,
+            "minW": 3,
+            "maxW": 6,
+            "minH": 2,
+            "maxH": 2
+          },
+          {
+            "i": "overview-chart",
+            "x": 0,
+            "y": 6,
+            "w": 12,
+            "h": 2,
+            "minW": 10,
+            "maxW": 12,
+            "minH": 2,
+            "maxH": 2
+          },
+          {
+            "i": "overview-detail",
+            "x": 4,
+            "y": 4,
+            "w": 8,
+            "h": 2,
+            "minW": 6,
+            "maxW": 10,
+            "minH": 2,
+            "maxH": 2
+          }
+        ],
+        "md": [
+          {
+            "i": "overview-pnl",
+            "x": 4,
+            "y": 2,
+            "w": 3,
+            "h": 4,
+            "minW": 3,
+            "maxW": 5,
+            "minH": 4,
+            "maxH": 4,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-dd",
+            "x": 0,
+            "y": 0,
+            "w": 2,
+            "h": 2,
+            "minW": 2,
+            "maxW": 3,
+            "minH": 2,
+            "maxH": 2,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-exposure",
+            "x": 4,
+            "y": 0,
+            "w": 3,
+            "h": 2,
+            "minW": 2,
+            "maxW": 3,
+            "minH": 2,
+            "maxH": 2,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-hmm",
+            "x": 0,
+            "y": 2,
+            "w": 2,
+            "h": 2,
+            "minW": 2,
+            "maxW": 3,
+            "minH": 2,
+            "maxH": 2,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-trades",
+            "x": 2,
+            "y": 0,
+            "w": 2,
+            "h": 2,
+            "minW": 2,
+            "maxW": 3,
+            "minH": 2,
+            "maxH": 2,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-health",
+            "x": 0,
+            "y": 4,
+            "w": 2,
+            "h": 2,
+            "minW": 2,
+            "maxW": 3,
+            "minH": 2,
+            "maxH": 2,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-control",
+            "x": 4,
+            "y": 6,
+            "w": 2,
+            "h": 2,
+            "minW": 2,
+            "maxW": 3,
+            "minH": 2,
+            "maxH": 2,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-watchlist",
+            "x": 0,
+            "y": 6,
+            "w": 4,
+            "h": 2,
+            "minW": 3,
+            "maxW": 5,
+            "minH": 2,
+            "maxH": 2,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-chart",
+            "x": 0,
+            "y": 8,
+            "w": 4,
+            "h": 2,
+            "minW": 3,
+            "maxW": 4,
+            "minH": 2,
+            "maxH": 2,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-detail",
+            "x": 0,
+            "y": 10,
+            "w": 4,
+            "h": 2,
+            "minW": 3,
+            "maxW": 5,
+            "minH": 2,
+            "maxH": 2,
+            "moved": false,
+            "static": false
+          }
+        ],
+        "sm": [
+          {
+            "i": "overview-pnl",
+            "x": 0,
+            "y": 0,
+            "w": 2,
+            "h": 4
+          },
+          {
+            "i": "overview-dd",
+            "x": 0,
+            "y": 4,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-exposure",
+            "x": 1,
+            "y": 4,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-hmm",
+            "x": 0,
+            "y": 6,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-trades",
+            "x": 1,
+            "y": 6,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-health",
+            "x": 0,
+            "y": 8,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-control",
+            "x": 1,
+            "y": 8,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-watchlist",
+            "x": 0,
+            "y": 10,
+            "w": 2,
+            "h": 2
+          },
+          {
+            "i": "overview-chart",
+            "x": 0,
+            "y": 12,
+            "w": 2,
+            "h": 2
+          },
+          {
+            "i": "overview-detail",
+            "x": 0,
+            "y": 14,
+            "w": 2,
+            "h": 2
+          }
+        ]
+      },
+      "locked": false,
+      "savedAt": 1759381862933
+    },
+    "2f66b43d-af23-41e4-999b-21717ed19cfb::live::AAPL": {
+      "layouts": {
+        "lg": [
+          {
+            "i": "reports-daily-reports",
+            "x": 0,
+            "y": 0,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "reports-session-summary",
+            "x": 0,
+            "y": 1,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "reports-shadow-sim",
+            "x": 0,
+            "y": 2,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "reports-reason-codes",
+            "x": 0,
+            "y": 3,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "reports-alerts-history",
+            "x": 0,
+            "y": 4,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "reports-guardrail-log",
+            "x": 0,
+            "y": 5,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          }
+        ],
+        "md": [
+          {
+            "i": "reports-daily-reports",
+            "x": 0,
+            "y": 0,
+            "w": 3,
+            "h": 3,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "reports-session-summary",
+            "x": 0,
+            "y": 3,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "reports-shadow-sim",
+            "x": 0,
+            "y": 4,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "reports-reason-codes",
+            "x": 0,
+            "y": 5,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "reports-alerts-history",
+            "x": 0,
+            "y": 6,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "reports-guardrail-log",
+            "x": 0,
+            "y": 7,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          }
+        ],
+        "sm": [
+          {
+            "i": "overview-pnl",
+            "x": 0,
+            "y": 0,
+            "w": 2,
+            "h": 4
+          },
+          {
+            "i": "overview-dd",
+            "x": 0,
+            "y": 4,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-exposure",
+            "x": 1,
+            "y": 4,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-hmm",
+            "x": 0,
+            "y": 6,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-trades",
+            "x": 1,
+            "y": 6,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-health",
+            "x": 0,
+            "y": 8,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-control",
+            "x": 1,
+            "y": 8,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-watchlist",
+            "x": 0,
+            "y": 10,
+            "w": 2,
+            "h": 2
+          },
+          {
+            "i": "overview-chart",
+            "x": 0,
+            "y": 12,
+            "w": 2,
+            "h": 2
+          },
+          {
+            "i": "overview-detail",
+            "x": 0,
+            "y": 14,
+            "w": 2,
+            "h": 2
+          }
+        ]
+      },
+      "locked": false,
+      "savedAt": 1759381856060
+    },
+    "b0186ffa-92dc-4b92-9408-8c485c2ee4f2::live::ALL": {
+      "layouts": {
+        "lg": [
+          {
+            "i": "overview-pnl",
+            "x": 0,
+            "y": 0,
+            "w": 4,
+            "h": 4,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-dd",
+            "x": 4,
+            "y": 0,
+            "w": 2,
+            "h": 2,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-exposure",
+            "x": 6,
+            "y": 0,
+            "w": 4,
+            "h": 2,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-hmm",
+            "x": 10,
+            "y": 0,
+            "w": 2,
+            "h": 2,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-trades",
+            "x": 8,
+            "y": 2,
+            "w": 2,
+            "h": 2,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-health",
+            "x": 4,
+            "y": 2,
+            "w": 2,
+            "h": 2,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-control",
+            "x": 6,
+            "y": 2,
+            "w": 2,
+            "h": 2,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-watchlist",
+            "x": 0,
+            "y": 4,
+            "w": 4,
+            "h": 2,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-chart",
+            "x": 0,
+            "y": 6,
+            "w": 12,
+            "h": 2,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-detail",
+            "x": 4,
+            "y": 4,
+            "w": 8,
+            "h": 2,
+            "moved": false,
+            "static": false
+          }
+        ],
+        "md": [
+          {
+            "i": "overview-pnl",
+            "x": 4,
+            "y": 0,
+            "w": 4,
+            "h": 7,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-dd",
+            "x": 0,
+            "y": 4,
+            "w": 2,
+            "h": 4,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-exposure",
+            "x": 0,
+            "y": 0,
+            "w": 2,
+            "h": 4,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-hmm",
+            "x": 0,
+            "y": 8,
+            "w": 2,
+            "h": 4,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-trades",
+            "x": 2,
+            "y": 0,
+            "w": 2,
+            "h": 3,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-health",
+            "x": 2,
+            "y": 8,
+            "w": 2,
+            "h": 4,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-control",
+            "x": 2,
+            "y": 3,
+            "w": 2,
+            "h": 5,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-watchlist",
+            "x": 4,
+            "y": 7,
+            "w": 4,
+            "h": 5,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-chart",
+            "x": 0,
+            "y": 12,
+            "w": 4,
+            "h": 6,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-detail",
+            "x": 4,
+            "y": 12,
+            "w": 4,
+            "h": 8,
+            "moved": false,
+            "static": false
+          }
+        ],
+        "sm": [
+          {
+            "i": "overview-pnl",
+            "x": 0,
+            "y": 0,
+            "w": 2,
+            "h": 4
+          },
+          {
+            "i": "overview-dd",
+            "x": 0,
+            "y": 4,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-exposure",
+            "x": 1,
+            "y": 4,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-hmm",
+            "x": 0,
+            "y": 6,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-trades",
+            "x": 1,
+            "y": 6,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-health",
+            "x": 0,
+            "y": 8,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-control",
+            "x": 1,
+            "y": 8,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-watchlist",
+            "x": 0,
+            "y": 10,
+            "w": 2,
+            "h": 2
+          },
+          {
+            "i": "overview-chart",
+            "x": 0,
+            "y": 12,
+            "w": 2,
+            "h": 2
+          },
+          {
+            "i": "overview-detail",
+            "x": 0,
+            "y": 14,
+            "w": 2,
+            "h": 2
+          }
+        ]
+      },
+      "locked": false,
+      "savedAt": 1759472577270
+    },
+    "b0186ffa-92dc-4b92-9408-8c485c2ee4f2::live::AAPL": {
+      "layouts": {
+        "lg": [
+          {
+            "i": "portfolio-positions",
+            "x": 0,
+            "y": 0,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "portfolio-exposure",
+            "x": 0,
+            "y": 1,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "portfolio-pnl-timeline",
+            "x": 0,
+            "y": 2,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "portfolio-risk",
+            "x": 0,
+            "y": 3,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "portfolio-cash",
+            "x": 0,
+            "y": 4,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          }
+        ],
+        "md": [
+          {
+            "i": "portfolio-positions",
+            "x": 0,
+            "y": 0,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "portfolio-exposure",
+            "x": 0,
+            "y": 1,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "portfolio-pnl-timeline",
+            "x": 0,
+            "y": 2,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "portfolio-risk",
+            "x": 0,
+            "y": 3,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "portfolio-cash",
+            "x": 0,
+            "y": 4,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          }
+        ],
+        "sm": [
+          {
+            "i": "overview-pnl",
+            "x": 0,
+            "y": 0,
+            "w": 2,
+            "h": 4
+          },
+          {
+            "i": "overview-dd",
+            "x": 0,
+            "y": 4,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-exposure",
+            "x": 1,
+            "y": 4,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-hmm",
+            "x": 0,
+            "y": 6,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-trades",
+            "x": 1,
+            "y": 6,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-health",
+            "x": 0,
+            "y": 8,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-control",
+            "x": 1,
+            "y": 8,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-watchlist",
+            "x": 0,
+            "y": 10,
+            "w": 2,
+            "h": 2
+          },
+          {
+            "i": "overview-chart",
+            "x": 0,
+            "y": 12,
+            "w": 2,
+            "h": 2
+          },
+          {
+            "i": "overview-detail",
+            "x": 0,
+            "y": 14,
+            "w": 2,
+            "h": 2
+          }
+        ]
+      },
+      "locked": false,
+      "savedAt": 1759472602483
+    },
+    "b0186ffa-92dc-4b92-9408-8c485c2ee4f2::live::OVERVIEW": {
+      "layouts": {
+        "lg": [
+          {
+            "i": "overview-pnl",
+            "x": 0,
+            "y": 0,
+            "w": 4,
+            "h": 4
+          },
+          {
+            "i": "overview-dd",
+            "x": 4,
+            "y": 0,
+            "w": 2,
+            "h": 2
+          },
+          {
+            "i": "overview-exposure",
+            "x": 6,
+            "y": 0,
+            "w": 4,
+            "h": 2
+          },
+          {
+            "i": "overview-hmm",
+            "x": 10,
+            "y": 0,
+            "w": 2,
+            "h": 2
+          },
+          {
+            "i": "overview-trades",
+            "x": 8,
+            "y": 2,
+            "w": 2,
+            "h": 2
+          },
+          {
+            "i": "overview-health",
+            "x": 4,
+            "y": 2,
+            "w": 2,
+            "h": 2
+          },
+          {
+            "i": "overview-control",
+            "x": 6,
+            "y": 2,
+            "w": 2,
+            "h": 2
+          },
+          {
+            "i": "overview-watchlist",
+            "x": 0,
+            "y": 4,
+            "w": 4,
+            "h": 2
+          },
+          {
+            "i": "overview-chart",
+            "x": 0,
+            "y": 6,
+            "w": 12,
+            "h": 2
+          },
+          {
+            "i": "overview-detail",
+            "x": 4,
+            "y": 4,
+            "w": 8,
+            "h": 2
+          }
+        ],
+        "md": [
+          {
+            "i": "overview-pnl",
+            "x": 0,
+            "y": 0,
+            "w": 4,
+            "h": 7,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-dd",
+            "x": 0,
+            "y": 7,
+            "w": 2,
+            "h": 2,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-exposure",
+            "x": 2,
+            "y": 7,
+            "w": 2,
+            "h": 2,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-hmm",
+            "x": 0,
+            "y": 9,
+            "w": 2,
+            "h": 2,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-trades",
+            "x": 2,
+            "y": 9,
+            "w": 2,
+            "h": 2,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-health",
+            "x": 0,
+            "y": 11,
+            "w": 2,
+            "h": 2,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-control",
+            "x": 2,
+            "y": 11,
+            "w": 2,
+            "h": 2,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-watchlist",
+            "x": 0,
+            "y": 13,
+            "w": 4,
+            "h": 4,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-chart",
+            "x": 0,
+            "y": 17,
+            "w": 4,
+            "h": 3,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "overview-detail",
+            "x": 0,
+            "y": 20,
+            "w": 5,
+            "h": 3,
+            "moved": false,
+            "static": false
+          }
+        ],
+        "sm": [
+          {
+            "i": "overview-pnl",
+            "x": 0,
+            "y": 0,
+            "w": 2,
+            "h": 4
+          },
+          {
+            "i": "overview-dd",
+            "x": 0,
+            "y": 4,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-exposure",
+            "x": 1,
+            "y": 4,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-hmm",
+            "x": 0,
+            "y": 6,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-trades",
+            "x": 1,
+            "y": 6,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-health",
+            "x": 0,
+            "y": 8,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-control",
+            "x": 1,
+            "y": 8,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-watchlist",
+            "x": 0,
+            "y": 10,
+            "w": 2,
+            "h": 2
+          },
+          {
+            "i": "overview-chart",
+            "x": 0,
+            "y": 12,
+            "w": 2,
+            "h": 2
+          },
+          {
+            "i": "overview-detail",
+            "x": 0,
+            "y": 14,
+            "w": 2,
+            "h": 2
+          }
+        ]
+      },
+      "locked": false,
+      "savedAt": 1759476129747
+    },
+    "b0186ffa-92dc-4b92-9408-8c485c2ee4f2::live::PORTFOLIO": {
+      "layouts": {
+        "lg": [
+          {
+            "i": "portfolio-positions",
+            "x": 0,
+            "y": 0,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "portfolio-exposure",
+            "x": 0,
+            "y": 1,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "portfolio-pnl-timeline",
+            "x": 0,
+            "y": 2,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "portfolio-risk",
+            "x": 0,
+            "y": 3,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "portfolio-cash",
+            "x": 0,
+            "y": 4,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          }
+        ],
+        "md": [
+          {
+            "i": "portfolio-positions",
+            "x": 0,
+            "y": 0,
+            "w": 7,
+            "h": 3,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "portfolio-exposure",
+            "x": 0,
+            "y": 4,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "portfolio-pnl-timeline",
+            "x": 0,
+            "y": 5,
+            "w": 2,
+            "h": 2,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "portfolio-risk",
+            "x": 2,
+            "y": 4,
+            "w": 2,
+            "h": 3,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "portfolio-cash",
+            "x": 0,
+            "y": 7,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          }
+        ],
+        "sm": [
+          {
+            "i": "overview-pnl",
+            "x": 0,
+            "y": 0,
+            "w": 2,
+            "h": 4
+          },
+          {
+            "i": "overview-dd",
+            "x": 0,
+            "y": 4,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-exposure",
+            "x": 1,
+            "y": 4,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-hmm",
+            "x": 0,
+            "y": 6,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-trades",
+            "x": 1,
+            "y": 6,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-health",
+            "x": 0,
+            "y": 8,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-control",
+            "x": 1,
+            "y": 8,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-watchlist",
+            "x": 0,
+            "y": 10,
+            "w": 2,
+            "h": 2
+          },
+          {
+            "i": "overview-chart",
+            "x": 0,
+            "y": 12,
+            "w": 2,
+            "h": 2
+          },
+          {
+            "i": "overview-detail",
+            "x": 0,
+            "y": 14,
+            "w": 2,
+            "h": 2
+          }
+        ]
+      },
+      "locked": false,
+      "savedAt": 1759476156266
+    },
+    "b0186ffa-92dc-4b92-9408-8c485c2ee4f2::live::STRATEGY": {
+      "layouts": {
+        "lg": [
+          {
+            "i": "strategy-active-model",
+            "x": 0,
+            "y": 0,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "strategy-current-state",
+            "x": 0,
+            "y": 1,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "strategy-transition-matrix",
+            "x": 0,
+            "y": 2,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "strategy-guardrail-log",
+            "x": 0,
+            "y": 3,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "strategy-drift-monitor",
+            "x": 0,
+            "y": 4,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "strategy-live-telemetry",
+            "x": 0,
+            "y": 5,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "strategy-training-metrics",
+            "x": 0,
+            "y": 6,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "strategy-action-timeline",
+            "x": 0,
+            "y": 7,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "strategy-feature-health",
+            "x": 0,
+            "y": 8,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "strategy-model-provenance",
+            "x": 0,
+            "y": 9,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "strategy-policy-mapping",
+            "x": 0,
+            "y": 10,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "strategy-state-pnl-matrix",
+            "x": 0,
+            "y": 11,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "strategy-entropy-timeline",
+            "x": 0,
+            "y": 12,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "strategy-inference-latency",
+            "x": 0,
+            "y": 13,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "strategy-suggest-exec",
+            "x": 0,
+            "y": 14,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          }
+        ],
+        "md": [
+          {
+            "i": "strategy-active-model",
+            "x": 0,
+            "y": 0,
+            "w": 7,
+            "h": 4,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "strategy-current-state",
+            "x": 0,
+            "y": 4,
+            "w": 7,
+            "h": 3,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "strategy-transition-matrix",
+            "x": 0,
+            "y": 7,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "strategy-guardrail-log",
+            "x": 0,
+            "y": 8,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "strategy-drift-monitor",
+            "x": 0,
+            "y": 9,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "strategy-live-telemetry",
+            "x": 0,
+            "y": 10,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "strategy-training-metrics",
+            "x": 0,
+            "y": 11,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "strategy-action-timeline",
+            "x": 0,
+            "y": 12,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "strategy-feature-health",
+            "x": 0,
+            "y": 13,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "strategy-model-provenance",
+            "x": 0,
+            "y": 14,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "strategy-policy-mapping",
+            "x": 0,
+            "y": 15,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "strategy-state-pnl-matrix",
+            "x": 0,
+            "y": 16,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "strategy-entropy-timeline",
+            "x": 0,
+            "y": 17,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "strategy-inference-latency",
+            "x": 0,
+            "y": 18,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "strategy-suggest-exec",
+            "x": 0,
+            "y": 19,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          }
+        ],
+        "sm": [
+          {
+            "i": "overview-pnl",
+            "x": 0,
+            "y": 0,
+            "w": 2,
+            "h": 4
+          },
+          {
+            "i": "overview-dd",
+            "x": 0,
+            "y": 4,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-exposure",
+            "x": 1,
+            "y": 4,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-hmm",
+            "x": 0,
+            "y": 6,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-trades",
+            "x": 1,
+            "y": 6,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-health",
+            "x": 0,
+            "y": 8,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-control",
+            "x": 1,
+            "y": 8,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-watchlist",
+            "x": 0,
+            "y": 10,
+            "w": 2,
+            "h": 2
+          },
+          {
+            "i": "overview-chart",
+            "x": 0,
+            "y": 12,
+            "w": 2,
+            "h": 2
+          },
+          {
+            "i": "overview-detail",
+            "x": 0,
+            "y": 14,
+            "w": 2,
+            "h": 2
+          }
+        ]
+      },
+      "locked": false,
+      "savedAt": 1759473802455
+    },
+    "b0186ffa-92dc-4b92-9408-8c485c2ee4f2::live::EXECUTION": {
+      "layouts": {
+        "lg": [
+          {
+            "i": "execution-orders",
+            "x": 0,
+            "y": 0,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "execution-latency",
+            "x": 0,
+            "y": 1,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "execution-spread-costs",
+            "x": 0,
+            "y": 2,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "execution-slippage",
+            "x": 0,
+            "y": 3,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "execution-cancel-reject",
+            "x": 0,
+            "y": 4,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "execution-connection",
+            "x": 0,
+            "y": 5,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          }
+        ],
+        "md": [
+          {
+            "i": "execution-orders",
+            "x": 0,
+            "y": 0,
+            "w": 3,
+            "h": 3,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "execution-latency",
+            "x": 0,
+            "y": 3,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "execution-spread-costs",
+            "x": 0,
+            "y": 4,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "execution-slippage",
+            "x": 0,
+            "y": 5,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "execution-cancel-reject",
+            "x": 0,
+            "y": 6,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "execution-connection",
+            "x": 0,
+            "y": 7,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          }
+        ],
+        "sm": [
+          {
+            "i": "overview-pnl",
+            "x": 0,
+            "y": 0,
+            "w": 2,
+            "h": 4
+          },
+          {
+            "i": "overview-dd",
+            "x": 0,
+            "y": 4,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-exposure",
+            "x": 1,
+            "y": 4,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-hmm",
+            "x": 0,
+            "y": 6,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-trades",
+            "x": 1,
+            "y": 6,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-health",
+            "x": 0,
+            "y": 8,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-control",
+            "x": 1,
+            "y": 8,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-watchlist",
+            "x": 0,
+            "y": 10,
+            "w": 2,
+            "h": 2
+          },
+          {
+            "i": "overview-chart",
+            "x": 0,
+            "y": 12,
+            "w": 2,
+            "h": 2
+          },
+          {
+            "i": "overview-detail",
+            "x": 0,
+            "y": 14,
+            "w": 2,
+            "h": 2
+          }
+        ]
+      },
+      "locked": false,
+      "savedAt": 1759476158567
+    },
+    "b0186ffa-92dc-4b92-9408-8c485c2ee4f2::live::REPORTS": {
+      "layouts": {
+        "lg": [
+          {
+            "i": "reports-daily-reports",
+            "x": 0,
+            "y": 0,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "reports-session-summary",
+            "x": 0,
+            "y": 1,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "reports-shadow-sim",
+            "x": 0,
+            "y": 2,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "reports-reason-codes",
+            "x": 0,
+            "y": 3,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "reports-alerts-history",
+            "x": 0,
+            "y": 4,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "reports-guardrail-log",
+            "x": 0,
+            "y": 5,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          }
+        ],
+        "md": [
+          {
+            "i": "reports-daily-reports",
+            "x": 0,
+            "y": 0,
+            "w": 4,
+            "h": 3,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "reports-session-summary",
+            "x": 0,
+            "y": 3,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "reports-shadow-sim",
+            "x": 0,
+            "y": 4,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "reports-reason-codes",
+            "x": 0,
+            "y": 5,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "reports-alerts-history",
+            "x": 0,
+            "y": 6,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "reports-guardrail-log",
+            "x": 0,
+            "y": 7,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          }
+        ],
+        "sm": [
+          {
+            "i": "overview-pnl",
+            "x": 0,
+            "y": 0,
+            "w": 2,
+            "h": 4
+          },
+          {
+            "i": "overview-dd",
+            "x": 0,
+            "y": 4,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-exposure",
+            "x": 1,
+            "y": 4,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-hmm",
+            "x": 0,
+            "y": 6,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-trades",
+            "x": 1,
+            "y": 6,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-health",
+            "x": 0,
+            "y": 8,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-control",
+            "x": 1,
+            "y": 8,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-watchlist",
+            "x": 0,
+            "y": 10,
+            "w": 2,
+            "h": 2
+          },
+          {
+            "i": "overview-chart",
+            "x": 0,
+            "y": 12,
+            "w": 2,
+            "h": 2
+          },
+          {
+            "i": "overview-detail",
+            "x": 0,
+            "y": 14,
+            "w": 2,
+            "h": 2
+          }
+        ]
+      },
+      "locked": false,
+      "savedAt": 1759476159244
+    },
+    "b0186ffa-92dc-4b92-9408-8c485c2ee4f2::live::UNIVERSE": {
+      "layouts": {
+        "lg": [
+          {
+            "i": "universe-today-top10",
+            "x": 0,
+            "y": 0,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "universe-next-refresh",
+            "x": 0,
+            "y": 1,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "universe-year-top10",
+            "x": 0,
+            "y": 2,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "universe-active-intersection",
+            "x": 0,
+            "y": 3,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "universe-why-not-traded",
+            "x": 0,
+            "y": 4,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          }
+        ],
+        "md": [
+          {
+            "i": "universe-today-top10",
+            "x": 0,
+            "y": 0,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "universe-next-refresh",
+            "x": 0,
+            "y": 1,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "universe-year-top10",
+            "x": 0,
+            "y": 2,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "universe-active-intersection",
+            "x": 0,
+            "y": 3,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "universe-why-not-traded",
+            "x": 0,
+            "y": 4,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          }
+        ],
+        "sm": [
+          {
+            "i": "overview-pnl",
+            "x": 0,
+            "y": 0,
+            "w": 2,
+            "h": 4
+          },
+          {
+            "i": "overview-dd",
+            "x": 0,
+            "y": 4,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-exposure",
+            "x": 1,
+            "y": 4,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-hmm",
+            "x": 0,
+            "y": 6,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-trades",
+            "x": 1,
+            "y": 6,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-health",
+            "x": 0,
+            "y": 8,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-control",
+            "x": 1,
+            "y": 8,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-watchlist",
+            "x": 0,
+            "y": 10,
+            "w": 2,
+            "h": 2
+          },
+          {
+            "i": "overview-chart",
+            "x": 0,
+            "y": 12,
+            "w": 2,
+            "h": 2
+          },
+          {
+            "i": "overview-detail",
+            "x": 0,
+            "y": 14,
+            "w": 2,
+            "h": 2
+          }
+        ]
+      },
+      "locked": false,
+      "savedAt": 1759476159963
+    },
+    "b0186ffa-92dc-4b92-9408-8c485c2ee4f2::live::ANALYTICS": {
+      "layouts": {
+        "lg": [
+          {
+            "i": "analytics-pnl-distribution",
+            "x": 0,
+            "y": 0,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "analytics-trade-outcome",
+            "x": 0,
+            "y": 1,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "analytics-state-heatmap",
+            "x": 0,
+            "y": 2,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "analytics-sharpe-trends",
+            "x": 0,
+            "y": 3,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "analytics-strategy-comparison",
+            "x": 0,
+            "y": 4,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "analytics-market-regimes",
+            "x": 0,
+            "y": 5,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "analytics-drawdown-analysis",
+            "x": 0,
+            "y": 6,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "analytics-expectancy",
+            "x": 0,
+            "y": 7,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          }
+        ],
+        "md": [
+          {
+            "i": "analytics-pnl-distribution",
+            "x": 0,
+            "y": 0,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "analytics-trade-outcome",
+            "x": 0,
+            "y": 1,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "analytics-state-heatmap",
+            "x": 0,
+            "y": 2,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "analytics-sharpe-trends",
+            "x": 0,
+            "y": 3,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "analytics-strategy-comparison",
+            "x": 0,
+            "y": 4,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "analytics-market-regimes",
+            "x": 0,
+            "y": 5,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "analytics-drawdown-analysis",
+            "x": 0,
+            "y": 6,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          },
+          {
+            "i": "analytics-expectancy",
+            "x": 0,
+            "y": 7,
+            "w": 1,
+            "h": 1,
+            "moved": false,
+            "static": false
+          }
+        ],
+        "sm": [
+          {
+            "i": "overview-pnl",
+            "x": 0,
+            "y": 0,
+            "w": 2,
+            "h": 4
+          },
+          {
+            "i": "overview-dd",
+            "x": 0,
+            "y": 4,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-exposure",
+            "x": 1,
+            "y": 4,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-hmm",
+            "x": 0,
+            "y": 6,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-trades",
+            "x": 1,
+            "y": 6,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-health",
+            "x": 0,
+            "y": 8,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-control",
+            "x": 1,
+            "y": 8,
+            "w": 1,
+            "h": 2
+          },
+          {
+            "i": "overview-watchlist",
+            "x": 0,
+            "y": 10,
+            "w": 2,
+            "h": 2
+          },
+          {
+            "i": "overview-chart",
+            "x": 0,
+            "y": 12,
+            "w": 2,
+            "h": 2
+          },
+          {
+            "i": "overview-detail",
+            "x": 0,
+            "y": 14,
+            "w": 2,
+            "h": 2
+          }
+        ]
+      },
+      "locked": false,
+      "savedAt": 1759476161499
+    }
+  }
+}

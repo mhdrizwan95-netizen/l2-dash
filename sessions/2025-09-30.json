@@ -1,0 +1,47 @@
+{
+  "session": "file-strategies",
+  "dateUTC": "2025-09-30",
+  "fills": [
+    {
+      "time": "2025-09-30T10:00:00Z",
+      "symbol": "DEMO",
+      "price": 100,
+      "qty": 1,
+      "side": "BUY",
+      "value": -100,
+      "fee": 1
+    },
+    {
+      "time": "2025-09-30T10:30:00Z",
+      "symbol": "DEMO",
+      "price": 101,
+      "qty": 1,
+      "side": "SELL",
+      "value": 101,
+      "fee": 1
+    },
+    {
+      "time": "2025-09-30T14:00:00Z",
+      "symbol": "SPY",
+      "price": 422.35,
+      "qty": 10,
+      "side": "BUY",
+      "value": -4223.5,
+      "fee": 1
+    },
+    {
+      "time": "2025-09-30T15:15:00Z",
+      "symbol": "SPY",
+      "price": 423.2,
+      "qty": 10,
+      "side": "SELL",
+      "value": 4232,
+      "fee": 1
+    }
+  ],
+  "totals": {
+    "grossRealized": 9.499999999999659,
+    "fees": 4,
+    "netPnL": 5.499999999999659
+  }
+}

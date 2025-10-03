@@ -1,0 +1,7 @@
+fastapi==0.115.0
+uvicorn[standard]==0.30.5
+httpx==0.27.2
+pydantic==2.7.4
+ib-insync==0.9.86
+hmmlearn==0.3.0
+requests==2.32.3

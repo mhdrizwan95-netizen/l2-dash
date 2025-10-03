@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { bus } from '@/lib/engine/bus';
+import { bus } from '@/lib/bus';
 import { shadowSim } from '@/lib/engine/shadow';
 
 export const runtime = 'nodejs';

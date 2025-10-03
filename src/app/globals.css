@@ -126,3 +126,163 @@ html, body { height: 100%; }
     @apply bg-background text-foreground;
   }
 }
+
+/* React Grid Layout Resizing Styles (Scoped to legacy dashboard) */
+.legacy-dashboard .react-grid-layout {
+  position: relative;
+}
+
+.legacy-dashboard .react-grid-item {
+  transition: all 200ms ease;
+  transition-property: left, top;
+}
+
+.legacy-dashboard .react-grid-item img {
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+  padding: 0 5px 0 0;
+}
+
+.legacy-dashboard .react-grid-item.cssTransforms {
+  transition-property: transform;
+}
+
+.legacy-dashboard .react-grid-item.resizing {
+  transition: none;
+  z-index: 1;
+  will-change: width, height;
+}
+
+.legacy-dashboard .react-grid-item.react-draggable-dragging {
+  transition: none;
+  z-index: 3;
+  will-change: transform;
+}
+
+.legacy-dashboard .react-grid-item.dropping {
+  visibility: hidden;
+}
+
+.legacy-dashboard .react-grid-item.react-grid-placeholder {
+  background: red;
+  opacity: 0.2;
+  transition-duration: 100ms;
+  z-index: 2;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  touch-action: none;
+}
+
+.react-grid-item > .react-resizable-handle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  bottom: 0;
+  right: 0;
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj51PHBhdGggZD0iTTIwIDUwVjIwYzAgLTEuMS4päWChuZz0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj51PHBhdGggZD0iTTIwIDUwVjIwYzAgLTEuMS4pä');
+  background-size: 10px 10px;
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  padding: 0 3px 3px 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(0, 0, 0, 0.4);
+  box-sizing: border-box;
+  cursor: nw-resize;
+}
+
+.react-grid-item > .react-resizable-handle::after {
+  content: "";
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  width: 0px;
+  height: 0px;
+  border-left: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-bottom-right-radius: 2px;
+}
+
+.react-grid-item > .react-resizable-handle-se {
+  bottom: 0;
+  right: 0;
+  cursor: nw-resize;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-left: 0;
+  border-top: 0;
+  border-bottom-right-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.react-grid-item > .react-resizable-handle-se::after {
+  content: '';
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  width: 6px;
+  height: 6px;
+  border-right: 2px solid rgba(255, 255, 255, 0.4);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.react-grid-item.react-grid-resize-disabled > .react-resizable-handle {
+  display: none;
+}
+
+.react-resizable {
+  position: relative;
+}
+
+.react-resizable-handle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  bottom: 0;
+  right: 0;
+  background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNiIgaGVpZ2h0PSI2IiB2aWV3Qm94PSIwIDAgNiA2IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxwYXRoIGQ9Ik0wIDJINCTYiIHN0cm9rZT0iIzY2NiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxwYXRoIGQ9Ik0yIDFINiIgc3Ryb2tlPSIjNjY2IiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPHBhdGggZD0iTTQgNEg2IiBzdHJva2U9IiM2NjYiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8L3N2Zz4K') no-repeat center center;
+  padding: 0 3px 3px 0;
+  box-sizing: border-box;
+  cursor: nw-resize;
+}
+
+/* Make resize handles visible in dark theme */
+.react-grid-item > .react-resizable-handle-se {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  background: rgba(0, 0, 0, 0.4) !important;
+}
+
+.react-grid-item > .react-resizable-handle-se:hover {
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  background: rgba(0, 0, 0, 0.6) !important;
+}
+
+.react-grid-item > .react-resizable-handle-se::after {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Dashboard-specific grid styling */
+.dashboard-grid {
+  position: relative;
+}
+
+.dashboard-grid .react-grid-item.react-grid-placeholder {
+  background: rgba(59, 130, 246, 0.2) !important;
+  border: 2px dashed rgba(59, 130, 246, 0.5) !important;
+  border-radius: 8px;
+}
+
+.dashboard-grid .react-grid-item.react-grid-placeholder::before {
+  content: "Drop here";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgba(59, 130, 246, 0.8);
+  font-size: 12px;
+  font-weight: 500;
+}
