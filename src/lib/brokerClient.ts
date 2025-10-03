@@ -47,7 +47,7 @@ function sleep(ms: number): Promise<void> {
 // Helper to make HTTP requests with retry and backoff
 async function makeRequest<T>(
   endpoint: string,
-  body: any,
+  body: unknown,
   retries: number = BROKER_CONFIG.maxRetries
 ): Promise<T> {
   const url = `${BROKER_CONFIG.baseUrl}${endpoint}`;

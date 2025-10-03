@@ -26,12 +26,39 @@ export type StrategySlot = {
 
 export type Settings = BridgeSettings;
 
+interface StrategyStoreData {
+  settings: Settings;
+  slots: StrategySlot[];
+}
+
 const STORAGE_KEY = 'l2dash_store_v3';
 
 const uid = (): string =>
   (typeof crypto !== 'undefined' && 'randomUUID' in crypto)
     ? crypto.randomUUID()
     : 'id-' + Math.random().toString(16).slice(2) + Date.now().toString(16);
+
+// Strategy-specific persistence utilities
+function saveStrategyStore(data: StrategyStoreData): void {
+  try {
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    }
+  } catch (error) {
+    console.warn(`Failed to save strategy store to localStorage:`, error);
+  }
+}
+
+function loadStrategyStore(): StrategyStoreData | null {
+  try {
+    if (typeof localStorage === 'undefined') return null;
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch (error) {
+    console.warn(`Failed to load strategy store from localStorage:`, error);
+    return null;
+  }
+}
 
 let symbolSyncTimer: ReturnType<typeof setTimeout> | null = null;
 let lastSymbolSignature = '';
@@ -146,19 +173,14 @@ export const useStrategyStore = create<Store>((set, get) => ({
 
   bootFromStorage: () => {
     try {
-      const raw = typeof localStorage !== 'undefined' ? localStorage.getItem(STORAGE_KEY) : null;
-      if (raw) {
-        const parsed = JSON.parse(raw) as unknown;
-        if (parsed && typeof parsed === 'object') {
-          const data = parsed as { settings?: unknown; slots?: unknown };
-          const persistedSettings = (data.settings && typeof data.settings === 'object') ? (data.settings as Partial<Settings>) : undefined;
-          const slotEntries = Array.isArray(data.slots) ? (data.slots as Array<Partial<StrategySlot>>) : [];
-          const slots = slotEntries.length ? slotEntries.map((slot, idx) => hydrateSlot(slot, idx)) : [defaultSlot(1), defaultSlot(2)];
-          set({
-            settings: { ...defaultSettings, ...(persistedSettings ?? {}) },
-            slots,
-          });
-        }
+      const data = loadStrategyStore();
+      if (data) {
+        const persistedSettings = data.settings && typeof data.settings === 'object' ? data.settings as Partial<Settings> : undefined;
+        const slots = Array.isArray(data.slots) ? data.slots.map((slot, idx) => hydrateSlot(slot, idx)) : [defaultSlot(1), defaultSlot(2)];
+        set({
+          settings: { ...defaultSettings, ...(persistedSettings ?? {}) },
+          slots,
+        });
       }
     } catch { /* ignore */ }
 
@@ -188,11 +210,7 @@ export const useStrategyStore = create<Store>((set, get) => ({
     const initialSymbols = Array.from(new Set(get().slots.flatMap((slot) => slot.symbols || [])));
     scheduleSymbolSync(initialSymbols);
     useStrategyStore.subscribe((st) => {
-      try {
-        if (typeof localStorage !== 'undefined') {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify({ settings: st.settings, slots: st.slots }));
-        }
-      } catch { /* ignore */ }
+      saveStrategyStore({ settings: st.settings, slots: st.slots });
       const symbols = Array.from(new Set(st.slots.flatMap((slot) => slot.symbols || [])));
       scheduleSymbolSync(symbols);
     });

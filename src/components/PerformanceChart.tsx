@@ -2,7 +2,7 @@
 
 import { useMemo, useEffect, useRef } from 'react';
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
-import { useTelemetryStore } from '@/lib/telemetryStore';
+import { useTelemetryStore, type ExtendedTelemetry } from '@/lib/telemetryStore';
 import { useDashboardStore, TIME_RANGES } from '@/lib/dashboardStore';
 
 interface TickHistoryPoint {
@@ -30,7 +30,7 @@ export function PerformanceChart({ symbol }: { symbol?: string }) {
   const setTimeRange = useDashboardStore((state) => state.setTimeRange);
   const selectedSymbol = useDashboardStore((state) => state.selectedSymbol);
   const activeSymbol = symbol ?? selectedSymbol ?? null;
-  const entry = useTelemetryStore((state) => (activeSymbol ? (state as any).ticks?.[activeSymbol] ?? null : null));
+  const entry = useTelemetryStore((state) => (activeSymbol ? (state as ExtendedTelemetry).ticks?.[activeSymbol] ?? null : null));
   const history = entry?.history ?? EMPTY_HISTORY;
 
   const data = useMemo(() => {

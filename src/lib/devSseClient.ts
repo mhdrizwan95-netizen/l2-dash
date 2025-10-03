@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
-import { isSseEventUnion } from './contracts';
+import { isSseEventUnion, SseEventUnion, TickEvent, HmmStateEvent, FillEvent, HealthEvent } from './contracts';
 
 // Connection states
 type ConnectionState = 'disconnected' | 'connecting' | 'connected' | 'reconnecting' | 'error';
@@ -14,7 +14,7 @@ const RECONNECT_CONFIG = {
 
 export interface UseDevSseOptions {
   enabled?: boolean;
-  onEvent?: (event: any) => void;
+  onEvent?: (event: SseEventUnion) => void;
   onStateChange?: (state: ConnectionState) => void;
 }
 
@@ -166,7 +166,7 @@ export function useDevSseClient(options: UseDevSseOptions = {}): UseDevSseResult
 }
 
 // Additional utility hooks for specific event types
-export function useDevSseTicks(onTick?: (tick: any) => void) {
+export function useDevSseTicks(onTick?: (tick: TickEvent) => void) {
   return useDevSseClient({
     onEvent: (event) => {
       if (event.event === 'tick') {
@@ -176,7 +176,7 @@ export function useDevSseTicks(onTick?: (tick: any) => void) {
   });
 }
 
-export function useDevSseHmmStates(onStateUpdate?: (state: any) => void) {
+export function useDevSseHmmStates(onStateUpdate?: (state: HmmStateEvent) => void) {
   return useDevSseClient({
     onEvent: (event) => {
       if (event.event === 'hmm_state') {
@@ -186,7 +186,7 @@ export function useDevSseHmmStates(onStateUpdate?: (state: any) => void) {
   });
 }
 
-export function useDevSseFills(onFill?: (fill: any) => void) {
+export function useDevSseFills(onFill?: (fill: FillEvent) => void) {
   return useDevSseClient({
     onEvent: (event) => {
       if (event.event === 'fill') {
@@ -196,7 +196,7 @@ export function useDevSseFills(onFill?: (fill: any) => void) {
   });
 }
 
-export function useDevSseHealth(onHealth?: (health: any) => void) {
+export function useDevSseHealth(onHealth?: (health: HealthEvent) => void) {
   return useDevSseClient({
     onEvent: (event) => {
       if (event.event === 'health') {

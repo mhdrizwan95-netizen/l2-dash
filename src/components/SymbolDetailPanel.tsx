@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo } from 'react';
+import { type ExtendedTelemetry } from '@/lib/telemetryStore';
 import { useTelemetryStore } from '@/lib/telemetryStore';
 import { useDashboardStore, TIME_RANGES } from '@/lib/dashboardStore';
 import { formatUsd } from './SymbolOverviewGrid';
@@ -12,10 +13,10 @@ export function SymbolDetailPanel() {
   const setTimeRange = useDashboardStore((state) => state.setTimeRange);
   const selectedSymbols = useDashboardStore((state) => state.selectedSymbols);
   const setSelectedSymbol = useDashboardStore((state) => state.setSelectedSymbol);
-  const tickEntry = useTelemetryStore((state) => (selectedSymbol ? (state as any).ticks?.[selectedSymbol] ?? null : null));
-  const positions = useTelemetryStore((state) => state.positions);
-  const fills = useTelemetryStore((state) => state.fills);
-  const guardrails = useTelemetryStore((state) => state.guardrails);
+  const tickEntry = useTelemetryStore((state) => (selectedSymbol ? (state as ExtendedTelemetry).ticks?.[selectedSymbol] ?? null : null));
+  const positions = useTelemetryStore((state) => (state as ExtendedTelemetry).positions);
+  const fills = useTelemetryStore((state) => (state as ExtendedTelemetry).fills);
+  const guardrails = useTelemetryStore((state) => (state as ExtendedTelemetry).guardrails);
 
   const history = useMemo(() => {
     if (!tickEntry) return [];
@@ -26,14 +27,14 @@ export function SymbolDetailPanel() {
     }));
   }, [tickEntry, timeRange.ms]);
 
-  const position = selectedSymbol ? positions[selectedSymbol] : undefined;
+  const position = selectedSymbol ? positions?.[selectedSymbol] : undefined;
   const exposure = position && tickEntry ? position.qty * tickEntry.price : 0;
   const latestTrades = useMemo(() => {
-    if (!selectedSymbol) return [];
+    if (!selectedSymbol || !fills) return [];
     return fills.filter((f) => f.symbol === selectedSymbol).slice(0, 6);
   }, [fills, selectedSymbol]);
   const latestAlerts = useMemo(() => {
-    if (!selectedSymbol) return [];
+    if (!selectedSymbol || !guardrails) return [];
     return guardrails.filter((g) => !g.symbol || g.symbol === selectedSymbol).slice(0, 6);
   }, [guardrails, selectedSymbol]);
 

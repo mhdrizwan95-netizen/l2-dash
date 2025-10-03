@@ -3,16 +3,23 @@ import { subscribeWithSelector } from 'zustand/middleware';
 import { makeRafBatcher } from './rafBatch';
 
 // Shared immutable empty arrays/objects to avoid unnecessary re-renders
-const EMPTY_ARR: any[] = [];
+const EMPTY_ARR: TickData[] = [];
 const DEFAULT_WATCHLIST = ['AAPL','GOOGL','MSFT','TSLA','NVDA','META'];
 
-type ExtendedTelemetry = Telemetry & {
+// Define proper types for telemetry data
+export type TickData = Array<{ ts: number; price: number }>;
+export type PositionData = { qty: number; avgPx: number; realizedPnL: number };
+export type FillData = { orderId: string; px: number; qty: number; ts: number; symbol: string; kind?: string };
+export type GuardrailData = { id: string; rule: string; severity: 'block' | 'warn'; ts: number; symbol?: string };
+
+export type ExtendedTelemetry = Telemetry & {
   watchlist?: string[];
-  ticks?: Record<string, any>;
-  positions?: Record<string, any>;
-  fills?: any[];
-  guardrails?: any[];
-  guardrailStore?: any;
+  activeSymbol?: string | null;
+  ticks?: Record<string, TickData & { price: number; ts: number; history: TickData }>;
+  positions?: Record<string, PositionData>;
+  fills?: FillData[];
+  guardrails?: GuardrailData[];
+  guardrailStore?: unknown;
 };
 
 type Telemetry = {

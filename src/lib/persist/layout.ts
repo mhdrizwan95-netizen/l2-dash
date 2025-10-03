@@ -59,9 +59,9 @@ export function clampCockpitSizes(
 
 // Clamp analytics grid sizes to prevent cards from becoming unusable
 export function clampAnalyticsSizes(
-  layout: Record<string, number>
+  layout: Partial<Record<string, number>>
 ): Record<string, number> {
-  const clamped: Record<string, number> = { ...layout };
+  const clamped: Record<string, number> = { ...layout } as Record<string, number>;
 
   Object.entries(clamped).forEach(([key, value]) => {
     // Convert key to lowercase for lookup
@@ -73,18 +73,19 @@ export function clampAnalyticsSizes(
   return clamped;
 }
 
+import { loadLocal as cockpitLoadLocal, getCockpitKey } from './cockpit';
+import { loadLocal as analyticsLoadLocal, getAnalyticsKey } from './analytics';
+
 // Get clamped layout on load - merges defaults with persisted, applies clamping
 export function getClampedCockpitLayout(tab: string): Record<keyof typeof COCKPIT_DEFAULTS, number> {
-  const { loadLocal, getCockpitKey } = require('./cockpit');
-  const persisted = loadLocal(getCockpitKey(tab)) || {};
-  return clampCockpitSizes(persisted);
+  const persisted = cockpitLoadLocal(getCockpitKey(tab));
+  return clampCockpitSizes(persisted ?? {});
 }
 
 // Get clamped analytics layout on load
 export function getClampedAnalyticsLayout(mode: string, tab: string, symbol?: string): Record<string, number> {
-  const { loadLocal, getAnalyticsKey } = require('./analytics');
-  const persisted = loadLocal(getAnalyticsKey(mode, tab, symbol)) || {};
-  return clampAnalyticsSizes(persisted);
+  const persisted = analyticsLoadLocal(getAnalyticsKey(mode, tab, symbol));
+  return clampAnalyticsSizes(persisted ?? {});
 }
 
 // Reset all layout-related localStorage keys and reload
@@ -113,6 +114,6 @@ export function clampLayout(sizes: number[], min = 5, max = 90): number[] {
   return total > 0 ? clamped.map(n => (n / total) * 100) : [];
 }
 
-export function safeArray<T = number>(a: any, fallback: T[]): T[] {
+export function safeArray<T = number>(a: unknown, fallback: T[]): T[] {
   return Array.isArray(a) && a.every((n) => Number.isFinite(n)) ? a : fallback;
 }

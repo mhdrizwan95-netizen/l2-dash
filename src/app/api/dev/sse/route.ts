@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server';
-import { buildSamplePayload } from '@/lib/contracts';
+import { buildSamplePayload, SseEventUnion } from '@/lib/contracts';
 
 export const runtime = 'nodejs';
 
@@ -69,7 +69,7 @@ export async function GET(req: NextRequest) {
 
   const stream = new ReadableStream<Uint8Array>({
     start(controller) {
-      const send = (event: any) => {
+      const send = (event: SseEventUnion | { event: 'control', message: string, timestamp: number }) => {
         if (aborted) return;
         try {
           controller.enqueue(encoder.encode(`data: ${JSON.stringify(event)}\n\n`));
